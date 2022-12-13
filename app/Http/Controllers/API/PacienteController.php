@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ActualizarPacienteRequest;
+use App\Http\Requests\GuardarPacienteRequest;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
 
@@ -25,9 +27,15 @@ class PacienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GuardarPacienteRequest $request)
     {
-        //
+        //Crea un paciente en la base de datos
+        Paciente::create($request->all());
+        // dd($request->nombres);
+        return response()->json([
+            'res' => true,
+            'msg' => 'Paciente Guardado Correctamente'
+        ]);
     }
 
     /**
@@ -36,9 +44,13 @@ class PacienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Paciente $paciente) //se le puede en vez de solicitar el id , le colocamos el modelo y le especificamos que es un paciente lo que vamos a recibir
     {
         //
+        return response()->json([
+            'res' => true,
+            'paciente' => $paciente //nos devolvera toda la data del paciente
+        ]);
     }
 
     /**
@@ -48,9 +60,14 @@ class PacienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ActualizarPacienteRequest $request, Paciente $paciente)
     {
         //
+        $paciente->update($request->all());
+        return response()->json([
+            'res' => true,
+            'msg' => 'Paciente Actualizado correctamente',
+        ],200);//status Code
     }
 
     /**
