@@ -24,3 +24,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //Las rutas van definidad por el nombre de la ruta , controlador , y la funcion que ejecutara
 // esto es igual a localhost/pacientes/
 Route::get('pacientes',[PacienteController::class,'index']); 
+Route::post('pacientes',[PacienteController::class,'store']); 
+Route::get('pacientes/{paciente}',[PacienteController::class,'show']); 
+Route::put('pacientes/{paciente}',[PacienteController::class,'update']); 

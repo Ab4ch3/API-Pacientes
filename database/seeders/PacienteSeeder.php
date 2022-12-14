@@ -26,7 +26,9 @@ class PacienteSeeder extends Seeder
 	        	'dni' => 70218511,
 	        	'tipo_sangre' => 'A+',
 	        	'telefono' => 943124351,
-	        	'direccion' => 'Jr. Ramón Castilla 110'
+	        	'direccion' => 'Jr. Ramón Castilla 110',
+						'created_at' => date('Y-m-d H:i:s'),
+						'updated_at' => date('Y-m-d H:i:s'),
         	],
         	[
 	        	'nombres' => 'María Perla',
@@ -36,7 +38,9 @@ class PacienteSeeder extends Seeder
 	        	'dni' => 80218522,
 	        	'tipo_sangre' => 'A-',
 	        	'telefono' => 952312435,
-	        	'direccion' => 'Jr. Manuel Ruíz 230'
+	        	'direccion' => 'Jr. Manuel Ruíz 230',
+						'created_at' => date('Y-m-d H:i:s'),
+						'updated_at' => date('Y-m-d H:i:s'),
         	],
         	[
 	        	'nombres' => 'Julio Ramón',
@@ -46,7 +50,9 @@ class PacienteSeeder extends Seeder
 	        	'dni' => 23219913,
 	        	'tipo_sangre' => 'A+',
 	        	'telefono' => 977123331,
-	        	'direccion' => 'Jr. Enrique Palacios 202'
+	        	'direccion' => 'Jr. Enrique Palacios 202',
+						'created_at' => date('Y-m-d H:i:s'),
+						'updated_at' => date('Y-m-d H:i:s'),
         	],
         	[
         		'nombres' => 'Mario Idalgo',
@@ -56,7 +62,9 @@ class PacienteSeeder extends Seeder
 				'dni' => 80218511,
 				'tipo_sangre' => 'B+',
 				'telefono' => 932112351,
-				'direccion' => 'Jr. Manuel Ruiz 800'
+				'direccion' => 'Jr. Manuel Ruiz 800',
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s'),
         	],
         	[
         		'nombres' => 'María Rosa',
@@ -66,7 +74,9 @@ class PacienteSeeder extends Seeder
 				'dni' => 62215777,
 				'tipo_sangre' => 'AB+',
 				'telefono' => 951774351,
-				'direccion' => 'Jr. Ramón Castilla 401'
+				'direccion' => 'Jr. Ramón Castilla 401',
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s'),
         	],
         	[
         		'nombres' => 'Kevin Juan',
@@ -76,7 +86,9 @@ class PacienteSeeder extends Seeder
 				'dni' => 78218555,
 				'tipo_sangre' => 'A+',
 				'telefono' => 934994351,
-				'direccion' => 'Jr. Alfonso Ugarte 2020'
+				'direccion' => 'Jr. Alfonso Ugarte 2020',
+				'created_at' => date('Y-m-d H:i:s'),
+						'updated_at' => date('Y-m-d H:i:s'),
         	],
         	[
         		'nombres' => 'Cielo Celeste',
@@ -86,7 +98,9 @@ class PacienteSeeder extends Seeder
 				'dni' => 23888591,
 				'tipo_sangre' => 'A-',
 				'telefono' => 971661152,
-				'direccion' => 'Jr. Francisco Bolognesi'
+				'direccion' => 'Jr. Francisco Bolognesi',
+				'created_at' => date('Y-m-d H:i:s'),
+						'updated_at' => date('Y-m-d H:i:s'),
         	]
         ]);
     }
