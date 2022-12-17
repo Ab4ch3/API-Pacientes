@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ActualizarPacienteRequest;
 use App\Http\Requests\GuardarPacienteRequest;
+use App\Http\Resources\PacienteResource;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class PacienteController extends Controller
     public function index()
     {
         //
-        return Paciente::all();//el metodo trae todos los elemento de la base de datos
+        return PacienteResource::collection(Paciente::all()) ;//el metodo trae todos los elemento de la base de datos , usando un recurso
     }
 
     /**
@@ -29,13 +30,15 @@ class PacienteController extends Controller
      */
     public function store(GuardarPacienteRequest $request)
     {
-        //Crea un paciente en la base de datos
-        Paciente::create($request->all());
+        
         // dd($request->nombres);
-        return response()->json([
-            'res' => true,
-            'msg' => 'Paciente Guardado Correctamente'
-        ]);
+        // return response()->json([
+        //     'res' => true,
+        //     'msg' => 'Paciente Guardado Correctamente'
+        // ]);
+        
+        //Crea un paciente en la base de datos
+        return (new PacienteResource(Paciente::create($request->all())))->additional(['msg' => 'Paciente Guardado Correctamente']);
     }
 
     /**
@@ -47,10 +50,11 @@ class PacienteController extends Controller
     public function show(Paciente $paciente) //se le puede en vez de solicitar el id , le colocamos el modelo y le especificamos que es un paciente lo que vamos a recibir
     {
         //
-        return response()->json([
-            'res' => true,
-            'paciente' => $paciente //nos devolvera toda la data del paciente
-        ]);
+        // return response()->json([
+        //     'res' => true,
+        //     'paciente' => $paciente //nos devolvera toda la data del paciente
+        // ]);
+        return new PacienteResource($paciente);
     }
 
     /**
@@ -64,10 +68,12 @@ class PacienteController extends Controller
     {
         //
         $paciente->update($request->all());
-        return response()->json([
-            'res' => true,
-            'msg' => 'Paciente Actualizado correctamente',
-        ],200);//status Code
+        // return response()->json([
+        //     'res' => true,
+        //     'msg' => 'Paciente Actualizado correctamente',
+        // ],200);//status Code
+
+        return (new PacienteResource($paciente))->additional(['msg' => 'Paciente Actualizado correctamente'])->response()->setStatusCode(202);
     }
 
     /**
@@ -76,8 +82,14 @@ class PacienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Paciente $paciente)
     {
         //
+        //  return response()->json([
+            //     'res' => true,
+            //     'msg' => 'Paciente Eliminado correctamente',
+            // ],200);//status Code
+            $paciente->delete();
+            return (new PacienteResource($paciente))->additional(['msg' => 'Paciente Eliminado correctamente',]);
     }
 }
