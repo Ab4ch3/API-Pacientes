@@ -23,7 +23,9 @@ class AutenticarController extends Controller
         $user->password = bcrypt($request->password); //sirve para encriptar el password
 
         $user->save();
-
+        $user->roles()->attach($request->roles);//Para asignarle roles a un usuario que se va crear, en este caso el role se lo vamos a pasar de una vez con el rquest de crear usuario nuevo
+        
+        
         return response()->json([
             'res' => true,
             'msg' => 'Usuario Registrado'
@@ -33,7 +35,7 @@ class AutenticarController extends Controller
     public function login(AccesoRequest $request)
     {
         # Validar los usuario para crear los api tokens necesarios
-        $user = User::where('email', $request->email)->first();
+        $user = User::with('roles')->where('email', $request->email)->first();
  
         #Realiza una verificacion de las crendenciales si son correctas
         if (! $user || ! Hash::check($request->password, $user->password)){
@@ -46,7 +48,10 @@ class AutenticarController extends Controller
 
         return response()->json([
             'res' => true,
-            'token' => $token
+            'msg' => [
+                "token"=> $token,
+                "user" => $user
+                ]
         ],200);
     }
 

@@ -28,8 +28,8 @@ class PacienteResource extends JsonResource
             'telefono' => $this->telefono,
             'correo' => $this->correo,
             'direccion' => $this->direccion,
-            'created_at' => $this->created_at->format('d-m-Y'),
-            'updated_at' => $this->updated_at->format('d-m-Y')
+            // 'created_at' => $this->created_at->format('d-m-Y'),
+            // 'updated_at' => $this->updated_at->format('d-m-Y')
         ];
     }
       public function with($request)
